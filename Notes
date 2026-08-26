@@ -1,0 +1,36 @@
+Sample DB Schema:
+
+Models: User, Project, Task, Comment
+
+Relationships:
+* User has_many Projects
+* User has_many Tasks through Assigned Tasks
+* User has_many Comments
+* Project belongs_to User
+* Project has_many Tasks
+* Task belongs_to Project
+* Task belongs_to User through Assigned Tasks
+* Task has_many Comments
+* User Assigned Tasks has_many Users
+* User Assigned Tasks has_many Tasks
+* Comment belongs_to Task
+* Comment belongs_to User
+
+Passing criteria:
+Users
+1) Can see Users Projects
+2) Can see Users Tasks through Assigned Tasks
+3) Can see Users Comments
+Projects
+1) Can see who Project belongs to (User)
+2) Can see Project Tasks
+Tasks
+1) Can see what Project the Task belongs to
+2) Can see Task Comments
+3) Can see Task belongs to User through Assigned Tasks
+Assigned Tasks
+1) Can see Users Assigned Tasks
+2) Can see Task belongs to User
+Comments
+1) Can see Comments User
+2) Can see Comments Task
