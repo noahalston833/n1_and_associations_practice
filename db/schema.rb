@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_26_173155) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_26_173950) do
+  create_table "assigned_tasks", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "tasks_id", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["tasks_id"], name: "index_assigned_tasks_on_tasks_id"
+    t.index ["user_id"], name: "index_assigned_tasks_on_user_id"
+  end
+
   create_table "comments", force: :cascade do |t|
     t.string "content"
     t.datetime "created_at", null: false
@@ -45,6 +54,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_26_173155) do
     t.string "username"
   end
 
+  add_foreign_key "assigned_tasks", "tasks", column: "tasks_id"
+  add_foreign_key "assigned_tasks", "users"
   add_foreign_key "comments", "tasks"
   add_foreign_key "comments", "users"
   add_foreign_key "projects", "users", column: "owner_id"
